@@ -5,8 +5,6 @@
 typedef long long ll;
 using namespace std;
 
-using namespace std;
-
 int main() {
     ll n,k;
     cin>>k>>n;
