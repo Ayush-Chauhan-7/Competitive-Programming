@@ -1,3 +1,5 @@
+    // https://www.geeksforgeeks.org/problems/minimal-cost/1
+    
     #include <bits/stdc++.h>
     typedef long long ll;
     #define fo(i, n) for(ll i=0;i<n;i++)
