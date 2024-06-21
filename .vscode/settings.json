@@ -27,6 +27,9 @@
         "stacktrace": "cpp",
         "regex": "cpp",
         "ratio": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "cmath": "cpp",
+        "*.tcc": "cpp",
+        "functional": "cpp"
     }
 }
