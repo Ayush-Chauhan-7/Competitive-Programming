@@ -45,6 +45,5 @@
             freopen("input.txt","r",stdin);
             freopen("output.txt","w",stdout);
         #endif
-        solve();
         return 0;
     }

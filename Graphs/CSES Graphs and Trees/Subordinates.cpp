@@ -10,35 +10,34 @@
 
     using namespace std;
 
-    vector<int> p,sz;
+    const ll mxN = 2e5;
+    vi dp(mxN), adj[mxN];
 
-    void init(int n)
+    void dfs(int u)
     {
-        p.resize(n);
-        sz.assign(n,1);
-        iota(p.begin(),p.end(),0);
+        dp[u] = 1;
+        for(auto v : adj[u])
+        {
+            if(!dp[v])
+                dfs(v);
+            dp[u] += dp[v];
+        }
     }
 
-    int find(int x)
+    void solve()
     {
-        while(x != p[x])
-            x = p[x] = p[p[x]];
-        return x;
+        ll n,x;
+        cin>>n;
+        fo(i,n-1)
+        {
+            cin>>x;
+            x--;
+            adj[x].pb(i+1);
+        }
+        dfs(0);
+        fo(i,n)
+            cout<<dp[i]-1<<" ";
     }
-
-    bool unite(int x, int y)
-    {
-        x = find(x);
-        y = find(y);
-        if(x==y)
-            return false;
-        if(sz[x]<sz[y])
-            swap(x,y);
-        sz[x] += sz[y];
-        p[y] = x;
-        return true;
-    }
-
 
     int main()
     {
@@ -47,5 +46,6 @@
             freopen("input.txt","r",stdin);
             freopen("output.txt","w",stdout);
         #endif
+        solve();
         return 0;
     }

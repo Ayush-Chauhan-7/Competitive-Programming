@@ -10,35 +10,30 @@
 
     using namespace std;
 
-    vector<int> p,sz;
+    ll anc[200000][30];
 
-    void init(int n)
+    void solve()
     {
-        p.resize(n);
-        sz.assign(n,1);
-        iota(p.begin(),p.end(),0);
+        ll n,q, u, k;
+        cin>>n>>q;
+        fo(i,n)
+        {
+            cin>>anc[i][0];
+            anc[i][0]--;
+        }
+        for(int i=1; i<30;i++)
+            fo(u,n)
+                anc[u][i] = anc[anc[u][i-1]][i-1];
+        fo(i,q)
+        {
+            cin>>u>>k;
+            u--;
+            fo(i,30)
+                if((k>>i)&1)
+                    u = anc[u][i];
+            cout<<u+1<<endl;
+        }
     }
-
-    int find(int x)
-    {
-        while(x != p[x])
-            x = p[x] = p[p[x]];
-        return x;
-    }
-
-    bool unite(int x, int y)
-    {
-        x = find(x);
-        y = find(y);
-        if(x==y)
-            return false;
-        if(sz[x]<sz[y])
-            swap(x,y);
-        sz[x] += sz[y];
-        p[y] = x;
-        return true;
-    }
-
 
     int main()
     {
@@ -47,5 +42,6 @@
             freopen("input.txt","r",stdin);
             freopen("output.txt","w",stdout);
         #endif
+        solve();
         return 0;
     }

@@ -39,6 +39,25 @@
         return true;
     }
 
+    void solve()
+    {
+        ll n,m,ans=0,c=0;
+        cin>>n>>m;
+        vector<pair<ll,pair<ll,ll>>> edges(m);
+        fo(i,m)
+            cin>>edges[i].s.f>>edges[i].s.s>>edges[i].f;
+        sort(edges.begin(),edges.end());
+        init(n+1);
+        for(auto x:edges)
+        {
+            if(unite(x.s.f,x.s.s))
+                ans += x.f,c++;
+        }
+        if(c==n-1)
+            cout<<ans<<endl;
+        else
+            cout<<"IMPOSSIBLE"<<endl;
+    }
 
     int main()
     {
@@ -47,5 +66,6 @@
             freopen("input.txt","r",stdin);
             freopen("output.txt","w",stdout);
         #endif
+        solve();
         return 0;
     }

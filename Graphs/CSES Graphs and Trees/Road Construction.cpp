@@ -10,7 +10,7 @@
 
     using namespace std;
 
-    vector<int> p,sz;
+    vector<ll> p,sz;
 
     void init(int n)
     {
@@ -39,6 +39,23 @@
         return true;
     }
 
+    void solve()
+    {
+        ll n,m,u,v,szz=0,x;
+        cin>>n>>m;
+        init(n+1);
+        fo(i,m)
+        {
+            cin>>u>>v;
+            if(unite(u,v))
+            {
+                n--;
+                x = find(u);
+                szz = max(szz,sz[x]);
+            }
+            cout<<n<<" "<<szz<<endl;
+        }
+    }
 
     int main()
     {
@@ -47,5 +64,6 @@
             freopen("input.txt","r",stdin);
             freopen("output.txt","w",stdout);
         #endif
+        solve();
         return 0;
     }
